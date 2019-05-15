@@ -1,1 +1,1 @@
-kankan wo 
+kankan wo      ddddd
