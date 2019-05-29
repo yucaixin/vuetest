@@ -26,7 +26,8 @@ import TabBar from '@/components/TabBar'
 import Clist from '@/components/CList'
 export default {
     name:'cinema',
-    components:{
+    components:
+    {
         Header,
         TabBar,
         Clist
