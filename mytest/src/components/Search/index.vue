@@ -42,8 +42,9 @@ methods: {
 watch: {
 	message(newVal){
 		this.cancelRequest();
+		var cityId=this.$store.state.city.id;
 		var that=this;
-		 this.axios.get('/api/searchList?cityId=10&kw='+this.message,{cancelToken: new this.axios.CancelToken(function executor(c) {
+		 this.axios.get('/api/searchList?cityId='+cityId+'&kw='+this.message,{cancelToken: new this.axios.CancelToken(function executor(c) {
                     that.source = c;
                 })}).then((res)=>{
 		 //0: {id: 1, nm: "北京", isHot: 1, py: "beijing"}

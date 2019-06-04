@@ -1,5 +1,7 @@
 <template>
     <div class="movie_body">
+		<Loading v-if="isLoading"/>
+		<Scroller v-else>
 		<ul>
 			<li v-for="item in comeList" :key="item.id">
 				<div class="pic_show"><img :src="item.img | setWH(128.180)"></div>
@@ -14,6 +16,7 @@
 				</div>
 			</li>
 		</ul>
+		</Scroller>
 	</div>
 </template>
 
@@ -22,20 +25,27 @@ export default {
 name:"comingsoon",
 data() {
 	return {
-		comeList:[]
+		comeList:[],
+		isLoading:true,
+		prevCityId:-1 	
 	}
 },
-mounted() {
-		this.axios.get("/api/movieComingList?cityId=10").then(res=>{
+activated() {
+		var cityId=this.$store.state.city.id;
+		if(this.prevCityId==cityId){return}
+		this.isLoading=true
+		this.axios.get("/api/movieComingList?cityId="+cityId).then(res=>{
 			var movieList=res.data.data.comingList
-			console.log(res.data.data)
+			console.log(cityId)
 			this.comeList=movieList
+			this.isLoading=false;
+			this.prevCityId=cityId
 		})
 }
 }
 </script>
 
-<style>
+<style scoped>
 #content .movie_body{ flex:1; overflow:auto;}
 .movie_body ul{ margin:0 12px; overflow: hidden;}
 .movie_body ul li{ margin-top:12px; display: flex; align-items:center; border-bottom: 1px #e6e6e6 solid; padding-bottom: 10px;}
