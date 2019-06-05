@@ -1,5 +1,6 @@
 <template>
     <header id="header">
+		<slot></slot>
 		<h1>喵喵影院</h1>
 	</header>
 </template>

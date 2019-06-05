@@ -19,6 +19,7 @@
             </keep-alive>
         </div>
         <TabBar/>
+        <router-view name="detail"></router-view>
     </div>
 </template>
 
@@ -41,7 +42,7 @@ export default {
             if(msg==="ok"){
                 var nm=res.data.data.nm
                 var id=res.data.data.id
-                if(this.$store.state.city.id===id){return;}
+                if(this.$store.state.city.id==id){return;}
             messagebox({
              title:"定位",
              content:nm ,
@@ -57,7 +58,7 @@ export default {
             }
 			
 		})
-        },3000)
+        },1000)
        
          
     }
